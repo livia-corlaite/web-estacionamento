@@ -69,7 +69,7 @@ insert into modelo values ( 2, 'Van');
 
 insert into veiculo values ('gta 1234', 1, 333009, 'branco');
 insert into veiculo values ('isa 4321', 2, 228877, 'rosa');
-insert into veiculo values ('livinha 115', 3, 456364, 'roxo dark');
+insert into veiculo values ('livinha', 3, 456364, 'roxo dark');
 
 
 insert into patio values ( 10, 'Av andradas, 310', 100);

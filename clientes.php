@@ -36,6 +36,8 @@
 	<div id="container">
 		<main>
 			<h2>Clientes</h2>
+       <p><a href="cadastro.php">Cadastrar cliente</a></p>
+			
 
 			<table class="tabela-dados">
 					<thead>
