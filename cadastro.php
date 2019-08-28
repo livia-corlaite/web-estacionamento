@@ -1,3 +1,32 @@
+<?php
+  var_dump($_POST);
+
+  if(count($_POST)>0){
+     $banco="estacionamento";
+     $usuario="estacionamento";
+     $senha="joselia";
+
+
+     $conexao = new PDO("mysql:host=localhost;dbname=${banco}", $usuario, $senha );
+
+     $sql = "Insert into Cliente values (?,?,?)";
+
+     $comando = $conexao->prepare($sql);
+     $comando->execute([
+       $_POST['cpf'],
+       $_POST['name'],
+       $_POST['data']
+
+     	]);
+     header('Location: clientes.php');
+
+  	//interferir no banco de dados
+  }
+
+?>
+
+
+
 <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -15,7 +44,7 @@
 		<main>
 			<h2>Clientes</h2>
 
-			<form action="clientes.php" method="post">
+			<form action="cadastro.php" method="post">
 
 <label for="usuariom">
 
