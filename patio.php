@@ -19,6 +19,15 @@
 			'dtNasc'=>'14/01/02'
 		]
 	];*/
+
+	  $mensagem = "";
+  if (isset($_COOKIE['mensagem']))
+  {
+    $mensagem = $_COOKIE['mensagem'];
+    // depois que exibo a mensagem, devo retirá-la
+    // dos cookies.
+    setcookie('mensagem', '', 1);
+  }
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -34,6 +43,13 @@
 		<h1>ℙ IF Park</h1>
 	</header>
 	<div id="container">
+
+	      <?php if(!empty($mensagem)): ?>
+				<div id="mensagem">
+					<?= $mensagem; ?>
+				</div>
+			<?php endif; ?>
+
 		<main>
 			<h2>Pátio</h2>
 

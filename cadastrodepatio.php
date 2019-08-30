@@ -9,20 +9,20 @@
 
      $conexao = new PDO("mysql:host=localhost;dbname=${banco}", $usuario, $senha);
 
-     $sql = "Insert into Cliente values (?,?,?)";
+     $sql = "Insert into Patio values (?,?,?)";
 
      $comando = $conexao->prepare($sql);
      $sucesso= $comando->execute([
-       $_POST['cpf'],
-       $_POST['name'],
-       $_POST['data']
+       $_POST['num'],
+       $_POST['end'],
+       $_POST['cap']
 
      	]);
 
      $mensagem = '';
   if ($sucesso)
   {
-    $mensagem = "Cliente cadastrado!";
+    $mensagem = "Localização no Pátio foi cadastrado!";
   }
   else
   {
@@ -33,7 +33,8 @@
   setcookie('mensagem', $mensagem);
  
 
-     header('Location: clientes.php');
+     header('Location: patio.php');
+
 
 
   }
@@ -57,37 +58,37 @@
 	</header>
 	<div id="container">
 		<main>
-			<h2>Clientes</h2>
+			<h2>Cadastro de Pátio</h2>
 
-			<form action="cadastro.php" method="post">
+			<form action="cadastrodepatio.php" method="post">
 
-<label for="usuariom">
+<label for="numero">
 
 	<p>
-		CPF
+		Número
 	</p>
  </label>
 
- <input type="text" id="usuariom" name="cpf">
+ <input type="text" id="numero" name="num">
 
-<label for="nome">
+<label for="endereco">
 
 <p >
-Nome
+Endereço
 
  </p>
 
- <input type="text" id="nome" name="name">
+ <input type="text" id="endereco" name="end">
  </label>
 
-<label for="nasc">
+<label for="capacidade">
 
  <p>
-Data de nascimento
+Capacidade
 
  </p>
 
- <input type="date" id="nasc" name="data">
+ <input type="text" id="capacidade" name="cap">
  </label>
  <br>
  <br>

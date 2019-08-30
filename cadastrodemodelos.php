@@ -9,20 +9,19 @@
 
      $conexao = new PDO("mysql:host=localhost;dbname=${banco}", $usuario, $senha);
 
-     $sql = "Insert into Cliente values (?,?,?)";
+     $sql = "Insert into Modelo values (?,?)";
 
      $comando = $conexao->prepare($sql);
      $sucesso= $comando->execute([
-       $_POST['cpf'],
-       $_POST['name'],
-       $_POST['data']
+       $_POST['cod'],
+       $_POST['des']
 
      	]);
 
      $mensagem = '';
   if ($sucesso)
   {
-    $mensagem = "Cliente cadastrado!";
+    $mensagem = "Modelo cadastrado!";
   }
   else
   {
@@ -33,7 +32,8 @@
   setcookie('mensagem', $mensagem);
  
 
-     header('Location: clientes.php');
+     header('Location: modelos.php');
+
 
 
   }
@@ -57,38 +57,30 @@
 	</header>
 	<div id="container">
 		<main>
-			<h2>Clientes</h2>
+			<h2>Cadastro de Modelo</h2>
 
-			<form action="cadastro.php" method="post">
+			<form action="cadastrodemodelos.php" method="post">
 
-<label for="usuariom">
+<label for="codigo">
 
 	<p>
-		CPF
+		Código
 	</p>
  </label>
 
- <input type="text" id="usuariom" name="cpf">
+ <input type="text" id="codigo" name="cod">
 
-<label for="nome">
+<label for="descricao">
 
 <p >
-Nome
+Descrição
 
  </p>
 
- <input type="text" id="nome" name="name">
+ <input type="text" id="descricao" name="des">
  </label>
 
-<label for="nasc">
 
- <p>
-Data de nascimento
-
- </p>
-
- <input type="date" id="nasc" name="data">
- </label>
  <br>
  <br>
 
@@ -104,5 +96,3 @@ Data de nascimento
 
  </body>
  </html>
-
-
