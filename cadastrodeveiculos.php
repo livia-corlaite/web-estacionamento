@@ -9,20 +9,21 @@
 
      $conexao = new PDO("mysql:host=localhost;dbname=${banco}", $usuario, $senha);
 
-     $sql = "Insert into Cliente values (?,?,?)";
+     $sql = "Insert into Veiculo values (?,?,?,?)";
 
      $comando = $conexao->prepare($sql);
      $sucesso= $comando->execute([
+       $_POST['plac'],
+       $_POST['cod'],
        $_POST['cpf'],
-       $_POST['name'],
-       $_POST['data']
+       $_POST['cor']
 
      	]);
 
      $mensagem = '';
   if ($sucesso)
   {
-    $mensagem = "Cliente cadastrado!";
+    $mensagem = "Veículo cadastrado!";
   }
   else
   {
@@ -33,7 +34,8 @@
   setcookie('mensagem', $mensagem);
  
 
-     header('Location: clientes.php');
+     header('Location: veiculos.php');
+
 
 
   }
@@ -66,38 +68,56 @@
 	</header>
 	<div id="container">
 		<main>
-			<h2>Clientes</h2>
+			<h2>Cadastro de Veículos</h2>
 
-			<form action="cadastro.php" method="post">
+			<form action="cadastrodeveiculos.php" method="post">
+      <label for="codigo">
 
-<label for="usuariom">
+
+
+ <label for="plac">
+  <p>
+   Placa
+  </p>
+ </label>
+
+ <input type="text" id="placa" name="plac">
+
+<label for="descricao">
+
+
+<label for="codigo">
 
 	<p>
-		CPF
+		Código
 	</p>
  </label>
 
- <input type="text" id="usuariom" name="cpf">
+ <input type="text" id="codigo" name="cod">
 
-<label for="nome">
+<label for="cpf">
+
 
 <p >
-Nome
+CPF
 
  </p>
 
- <input type="text" id="nome" name="name">
+ <input type="text" id="cpf" name="cpf">
  </label>
 
-<label for="nasc">
+<label for="cor">
 
- <p>
-Data de nascimento
+
+<p >
+Cor
 
  </p>
 
- <input type="date" id="nasc" name="data">
+ <input type="text" id="cor" name="cor">
  </label>
+
+
  <br>
  <br>
 
@@ -113,5 +133,3 @@ Data de nascimento
 
  </body>
  </html>
-
-
