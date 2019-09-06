@@ -1,8 +1,12 @@
 <?php 
 
 	$conexao = new PDO("mysql:host=localhost;dbname=estacionamento", "estacionamento", "joselia");
-
-	$sql = "SELECT * FROM veiculo";
+$sql = <<<EOL
+	SELECT placa, desc_2, Nome, cor
+	  FROM veiculo, Modelo, Cliente
+	WHERE modelo_codmod = codmod
+	  AND cliente_cpf = cpf
+EOL;
 	$resultado = $conexao->query($sql);
 
 	$clientes = $resultado->fetchAll();
@@ -19,6 +23,8 @@
 			'dtNasc'=>'14/01/02'
 		]
 	];*/
+      
+
 	  $mensagem = "";
   if (isset($_COOKIE['mensagem']))
   {
@@ -64,7 +70,7 @@
 					<thead>
 						<tr>
 							<th>Placa</th>
-							<th>Cógigo do Modelo</th>
+							<th>Código do Modelo</th>
 							<th>CPF Cliente</th>
 							<th>Cor</th>
 
@@ -75,8 +81,8 @@
 						<?php foreach ($clientes as $cliente): ?>
 						<tr>
 							<td><?= $cliente['placa'] ?></td>
-							<td><?= $cliente['modelo_codmod'] ?></td>
-							<td><?= $cliente['cliente_cpf'] ?></td>
+							<td><?= $cliente['desc_2'] ?></td>
+							<td><?= $cliente['Nome'] ?></td>
 						    <td><?= $cliente['cor'] ?></td>
 
 						</tr>

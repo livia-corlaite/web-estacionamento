@@ -40,6 +40,11 @@
 
   }
 
+  $conexao = new PDO("mysql:host=localhost;dbname=estacionamento", "estacionamento", "joselia");
+$sql = "SELECT * FROM Modelo";
+$comando = $conexao->query($sql);
+$modelos = $comando->fetchAll();
+
 ?>
 
 
@@ -72,6 +77,23 @@
 
 			<form action="cadastrodeveiculos.php" method="post">
       <label for="codigo">
+      <label for="modelo">
+       <p> Modelo</p>
+
+        </label>
+
+
+      <select id="imodelo" name="modelo">
+                
+                <?php foreach ($modelos as $m): ?>
+
+                    <option value="<?= $m['codmod'] ?>">
+                        <?= $m['desc_2'] ?>
+                    </option>
+
+                <?php endforeach; ?>
+
+            </select> 
 
 
 
